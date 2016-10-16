@@ -1,2 +1,2 @@
-####Test 2
-#####Test again because lol why not
+#Test 2 Project
+To run, open the `index.html` file
