@@ -1,7 +1,14 @@
 module.exports = {
     getUserInfo: function(req, res) {
         SteamInstance.resolveVanityURL({ vanityurl: req.params.name }, function(err, data) {
-            (err) ? res.send(err): SteamInstance.getOwnedGames({
+            console.log("data: ", data)
+            if (err) return res.send(err);
+            if (data.success == 42) return res.send({
+                found: false,
+                message: "User not found!"
+            });
+
+            SteamInstance.getOwnedGames({
                 key: config.steamApiKey,
                 steamid: data.steamid,
                 include_appinfo: true,
